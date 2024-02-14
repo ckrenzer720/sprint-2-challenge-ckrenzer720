@@ -16,6 +16,15 @@
       //for loop to check profile
       // if "active" === true --> set to "inactive" and set a 'reason' -- updated profile should be returned
       // if "inactive" === false --> set to 'active' remove the 'reason' -- updated profile should be returned
+        let user = {
+          active: true,
+          inactive: false,
+          reason: 'because'
+        }
+        
+        for (let key = 0; key < user.lenght; key++) {
+          console.log(user)
+        }
     }
 
     // 👉 CHALLENGE 2
@@ -39,21 +48,21 @@
         //     3. If `x` _or_ `y` is less than 1 or greater than 3, return `"invalid coordinates"`.
     function mineSweeper(grid, x, y) {
       // array with sub arrays
-      let death = '🟥'
-      let alive = "🟦"
-        coords = [x][y];
-       [x - 1]
-       [y - 1]
+    
+      if (1 > x || 3 < x || 1 > y || 3 < y) {
+            return "invalid coordinates";
+          }
+          
+          idx1 = y - 1;
+          idx2 = x - 1;
+          
+          let spot = grid[idx1][idx2];
 
-        if (1 > [x][y] > 3) {
-          return "invalid coordinates";
-        }
-          if (coords !== death) {
-          return "🟥 💀";
-        } else {
-          return "🟦 🥳";
-        }
-       
+          if (spot === "🟥") {
+            return "🟥 💀"
+          } else {
+            return "🟦 🥳"
+          }
     }
 
     // 👉 CHALLENGE 3
@@ -64,12 +73,12 @@
           // 3. If a value is `null`, delete the entire key-value pair from the object.
           // 4. If any _property_ name exceeds 9 characters, return the string `"shorten all prop names to 9 chars or less"`.
     function booleanize(obj) {
-     
-      for (let key in obj) {
-        if (key.length > obj.length) {
-          return "shorten all prop names to 9 chars or less"
-        } 
-      }
+      let arr = {
+        
+        val: null, 
+        prop: 4
+      };
+      
     }
 
     // 👉 CHALLENGE 4
@@ -80,7 +89,35 @@
         // 2. Ensure no punctuation is used in the text.
         // 3. If `text` is empty or there are no forbidden words, return the original text.
     function scrub(text, forbidden) {
-
+      //check if text is empty or there are no forbidden words
+      if (text.length === 0 || forbidden.length === 0) {
+        return text
+      }
+      //new variable to not overwrite original text
+      let newText = text
+      //variable to seperate each individual word from the 'text' string
+      let splitStr = text.split(" ")
+      // console.log(splitStr)
+      // loop over splitStr for forbidden words
+      for (let i = 0; i < splitStr.length; i++) {
+        //readability purposes
+        word = splitStr[i];
+        // console.log(word)
+      //check if each word is forbidden and if it is, replace its length with 'x'
+      //check if the forbidden array contains text word
+          if (forbidden.includes(word)) {
+            replaceWord = "";
+              for (let j = 0; j < word.length; j++) {
+                replaceWord += "x"
+              }
+            //if text is forbidden, replace with 'x' of the length of word
+            //replace previous word with x'd word in splitStr
+            // console.log("==============")
+            newText = newText.replace(word, replaceWord)
+            // console.log("==============")
+          } 
+        }
+      return newText
     }
 
     // 👉 CHALLENGE 5 (bonus, NOT graded)
