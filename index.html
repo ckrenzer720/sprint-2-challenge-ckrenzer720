@@ -16,15 +16,19 @@
       //for loop to check profile
       // if "active" === true --> set to "inactive" and set a 'reason' -- updated profile should be returned
       // if "inactive" === false --> set to 'active' remove the 'reason' -- updated profile should be returned
-        let user = {
-          active: true,
-          inactive: false,
-          reason: 'because'
-        }
-        
-        for (let key = 0; key < user.lenght; key++) {
-          console.log(user)
-        }
+       if (profile.active === true && reason === undefined) {
+        return "confirm status manually"
+       }
+       if (profile.active === true) {
+        profile.active = false;
+        profile.reason = reason;
+        return profile
+       }
+       if (profile.active === false) {
+        profile.active = true;
+        delete profile.reason;
+        return profile
+       }
     }
 
     // 👉 CHALLENGE 2
@@ -73,12 +77,22 @@
           // 3. If a value is `null`, delete the entire key-value pair from the object.
           // 4. If any _property_ name exceeds 9 characters, return the string `"shorten all prop names to 9 chars or less"`.
     function booleanize(obj) {
-      let arr = {
-        
-        val: null, 
-        prop: 4
-      };
-      
+
+      for (let prop in obj) {
+        if (obj[prop] === 0) {
+          obj[prop] = false
+        }
+        if (obj[prop] === 1) {
+          obj[prop] = true
+        }
+        if (obj[prop] === null) {
+          delete obj[prop]
+        }
+        if (prop.length > 9) {
+          return "shorten all prop names to 9 chars or less";
+        }
+      } 
+      return obj
     }
 
     // 👉 CHALLENGE 4
